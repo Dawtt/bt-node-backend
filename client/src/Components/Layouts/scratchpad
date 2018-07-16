@@ -1,0 +1,25 @@
+<div>
+                  <p>Date Of Birth</p>
+                  <Select
+                      value={this.state.value1}
+                      onChange={(e, i, value) => this.setState({value1: value})}>
+                      <MenuItem value={1} primaryText="Year" />
+                      <MenuItem value={this.state.year} primaryText={this.state.year} />
+                  </Select>
+
+                  <Select
+                      value={this.state.value2}
+                      onChange={(e, i, value) => this.setState({value2: value})}>
+                      >
+                      <MenuItem value={1} primaryText="Month" />
+                      <MenuItem value={this.state.month} primaryText={this.state.month}/>
+                  </Select>
+
+                  <Select
+                      value={this.state.value3}
+                      onChange={(e, i, value) => this.setState({value3: value})}>
+                      >
+                      <MenuItem value={1} primaryText="Day" />
+                      <MenuItem key="day" value={this.state.day} primaryText={this.state.day} />
+                  </Select>
+              </div>

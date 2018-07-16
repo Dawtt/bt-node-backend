@@ -1,0 +1,22 @@
+{
+  "name": "componentsearchherokubuild",
+  "version": "0.0.1",
+  "engines": {
+    "node": "8.9.3",
+    "npm": "6.1.0",
+    "yarn": "1.7.0"
+  },
+  "cacheDirectories": [
+    "client/node_modules",
+    "auth_server/node_modules"],
+  "dependencies": {
+    "react-scripts": "1.1.4",
+    "concurrently":"3.6.0"
+  },
+  "scripts": {
+    "installrootdep": "yarn install",
+    "installserverdep": "cd auth-server && yarn install",
+    "installclientdep": "cd client && yarn install",
+    "start": "concurrently \"cd client && yarn start\" \"cd auth-server && node authorization_code/spotifyapp.js\""
+  }
+}
