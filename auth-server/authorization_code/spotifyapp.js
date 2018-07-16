@@ -34,16 +34,12 @@ var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-//  tag:  [additions]
 
+
+//  tag:  [additions]
 var path = require('path');
 var cities = require('../routes/cities');
 var pop = require('../routes/pop');
-
-
-
-
-
 //  tag:  end additions
 
 
@@ -76,10 +72,9 @@ spotifyapp.use(express.static(__dirname + '/public'))
    .use(bodyParser.urlencoded({ extended: true }))
    .use(express.static(path.join(__dirname, 'public')))
    .use('/cities', cities)
-   .use('/pop', pop);
+   .use('/pop', pop)
 // additions
-spotifyapp.get('/cities', cities)
-
+spotifyapp.get('/cities', cities);
 
 
 spotifyapp.get('/login', function(req, res) {
@@ -100,6 +95,15 @@ spotifyapp.get('/login', function(req, res) {
       redirect_uri: redirect_uri,
       state: state
     }));
+});
+
+spotifyapp.get('/logout', function(req, res){
+
+    /*
+        AuthenticationClient.clearCookies(getApplication());
+    */
+    res.clearCookie(stateKey);
+    res.redirect(secrets.spotify_UI_address);
 });
 
 spotifyapp.get('/callback', function(req, res) {
@@ -149,7 +153,7 @@ spotifyapp.get('/callback', function(req, res) {
         });
 
         // we can also pass the token to the browser to make requests from there
-        res.redirect('http://localhost:3000/#' +
+        res.redirect(secrets.spotify_UI_address +
           querystring.stringify({
             access_token: access_token,
             refresh_token: refresh_token
@@ -188,5 +192,5 @@ spotifyapp.get('/refresh_token', function(req, res) {
   });
 });
 
-console.log('Listening on 8888');
-spotifyapp.listen(8888);
+console.log('Listening on '+ secrets.port_listen);
+spotifyapp.listen(secrets.port_listen);

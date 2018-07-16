@@ -16,7 +16,6 @@
   "scripts": {
     "installrootdep": "yarn install",
     "installserverdep": "cd auth-server && yarn install",
-    "installclientdep": "cd client && yarn install",
-    "start": "concurrently \"cd client && yarn start\" \"cd auth-server && node authorization_code/spotifyapp.js\""
+    "start":  "cd auth-server && node authorization_code/spotifyapp.js\""
   }
 }
