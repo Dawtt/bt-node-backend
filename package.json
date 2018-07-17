@@ -33,9 +33,7 @@
   },
   "scripts": {
     "npminstall": "npm install ",
-    "server-install": "cd auth-server && npm install",
-    "start": "node /auth-server/authorization_code/spotifyapp.js",
-    "startserver": "nodemon auth-server/authorization_code/spotifyapp.js",
+    "start": "node spotifyapp.js",
     "nodemonserver": "nodemon spotifyapp.js"
   }
 }

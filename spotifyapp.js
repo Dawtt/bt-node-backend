@@ -31,14 +31,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var path = require('path');
 
-
-
 //  tag:  [additions]
 var cities = require('./routes/cities');
-
-/* mongodb calls
 var pop = require('./routes/pop');
-*/
 //  tag:  end additions
 
 
@@ -70,12 +65,10 @@ spotifyapp.use(express.static(__dirname + '/public'))
    .use(bodyParser.json())
    .use(bodyParser.urlencoded({ extended: true }))
    .use(express.static(path.join(__dirname, 'public')))
-   .use('/cities', cities);
 
-/*  mongodb
-   .use('/pop', pop)
-*/
-// additions
+   .use('/cities', cities)
+   .use('/pop', pop);
+
 spotifyapp.get('/cities', cities);
 
 
@@ -193,9 +186,6 @@ spotifyapp.get('/refresh_token', function(req, res) {
     }
   });
 });
-
-
-//console.log('Listening on '+ secrets.port_listen);
 
 spotifyapp.listen(port);
 console.log(`Server is probably listening on port ${port},
