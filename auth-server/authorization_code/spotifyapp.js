@@ -1,10 +1,14 @@
 /**
- * CODE BASED ON SPOTIFY OFFICIAL AUTHENTICATION EXAMPLE
+ * This is an example of a basic node.js script that performs
+ * the Authorization Code oAuth2 flow to authenticate against
+ * the Spotify Accounts.
  *
  * For more information, read
- * https://developer.spotify.com/web-api/authorization-guide/#authorization_code_flow & https://github.com/spotify/web-api-auth-examples
+ * https://developer.spotify.com/web-api/authorization-guide/#authorization_code_flow
  */
 
+//    tag:[additions]
+var secrets = require('./secretsconfig.js');
 // 'dotenv' is imported in package.json, and used for .env configuration in development.
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').load();
@@ -12,7 +16,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 
-//    # DIFFERENT VALUES IN DEV & PRODUCTION
 const port = process.env.DV_PORT || 4198; // checks local environment for port assignment, if none than use the assigned.
 var redirect_uri = process.env.DV_SPOTIFY_REDIRECT_URI; // Your redirect uri
 
@@ -29,16 +32,13 @@ var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var path = require('path');
 
 
 
 //  tag:  [additions]
-var cities = require('./routes/cities');
-
-/* mongodb calls
-var pop = require('./routes/pop');
-*/
+var path = require('path');
+var cities = require('../routes/cities');
+var pop = require('../routes/pop');
 //  tag:  end additions
 
 
@@ -70,11 +70,8 @@ spotifyapp.use(express.static(__dirname + '/public'))
    .use(bodyParser.json())
    .use(bodyParser.urlencoded({ extended: true }))
    .use(express.static(path.join(__dirname, 'public')))
-   .use('/cities', cities);
-
-/*  mongodb
+   .use('/cities', cities)
    .use('/pop', pop)
-*/
 // additions
 spotifyapp.get('/cities', cities);
 
@@ -105,7 +102,7 @@ spotifyapp.get('/logout', function(req, res){
         AuthenticationClient.clearCookies(getApplication());
     */
     res.clearCookie(stateKey);
-    res.redirect(redirect_uri);
+    res.redirect(secrets.spotify_UI_address);
 });
 
 spotifyapp.get('/callback', function(req, res) {
@@ -155,7 +152,7 @@ spotifyapp.get('/callback', function(req, res) {
         });
 
         // we can also pass the token to the browser to make requests from there
-        res.redirect(redirect_uri +
+        res.redirect(secrets.spotify_UI_address +
           querystring.stringify({
             access_token: access_token,
             refresh_token: refresh_token
@@ -194,11 +191,5 @@ spotifyapp.get('/refresh_token', function(req, res) {
   });
 });
 
-
-//console.log('Listening on '+ secrets.port_listen);
-
+console.log('Listening on '+ port);
 spotifyapp.listen(port);
-console.log(`Server is probably listening on port ${port},
-    with redirect: ${redirect_uri},
-`);
-

@@ -32,9 +32,10 @@
     "dotenv-expand": "^4.2.0"
   },
   "scripts": {
-    "npminstall": "npm install",
-    "start": "node spotifyapp.js",
-    "startserver": "node authorization_code/spotifyapp.js",
+    "npminstall": "npm install ",
+    "server-install": "cd auth-server && npm install",
+    "start": "node /auth-server/authorization_code/spotifyapp.js",
+    "startserver": "nodemon auth-server/authorization_code/spotifyapp.js",
     "nodemonserver": "nodemon spotifyapp.js"
   }
 }
