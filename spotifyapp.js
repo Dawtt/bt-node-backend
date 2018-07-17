@@ -13,7 +13,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 //    # DIFFERENT VALUES IN DEV & PRODUCTION
-const port = process.env.DV_PORT || 4198; // checks local environment for port assignment, if none than use the assigned.
+const port = process.env.PORT || 3333; // checks local environment for port assignment, if none than use the assigned.
 var redirect_uri = process.env.DV_SPOTIFY_REDIRECT_URI; // Your redirect uri
 var ui_server = process.env.DV_UI_SERVER;
 
