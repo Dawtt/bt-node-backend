@@ -25,7 +25,9 @@
     "morgan": "~1.7.0",
     "pug": "^0.1.0",
     "serve-favicon": "~2.3.0",
-    "tsc": "^1.20150623.0",
+    "tsc": "^1.20150623.0"
+  },
+  "devDependencies": {
     "nodemon": "^1.17.5",
     "dotenv": "^4.0.0",
     "dotenv-expand": "^4.2.0"
