@@ -1,5 +1,6 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
+
 # dependencies
 /node_modules
 
@@ -114,7 +115,7 @@ typings/
 .idea/workspace.xml
 
 
-auth-server/authorization_code/secretsconfig.js
+secretsconfig.js
 .idea/workspace.xml
 .idea/vcs.xml
 client/src/secretsconfigclient.js
