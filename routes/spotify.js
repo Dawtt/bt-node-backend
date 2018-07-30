@@ -1,13 +1,5 @@
 
 
-//    # DIFFERENT VALUES IN DEV & PRODUCTION
-const port = process.env.PORT || 3333; // checks local environment for port assignment, if none than use the assigned.
-const redirect_uri = process.env.SPOTIFY_REDIRECT_URI; // Your redirect uri
-const ui_server = process.env.UI_SERVER;
-
-//    # SAME VALUES IN DEV & PRODUCTION
-const client_id = process.env.SPOTIFY_CLIENT_ID; // Your client id
-const client_secret = process.env.SPOTIFY_CLIENT_SECRET; // Your secret
 
 
 
@@ -18,6 +10,21 @@ const querystring = require('querystring');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const path = require('path');
+
+// 'dotenv' is imported in package.json, and used for .env configuration in development.
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').load();
+    console.log("dotenv is being required.")
+}
+
+//    # DIFFERENT VALUES IN DEV & PRODUCTION
+const port = process.env.PORT || 8888; // checks local environment for port assignment, if none than use the assigned.
+const redirect_uri = process.env.SPOTIFY_REDIRECT_URI; // Your redirect uri
+const ui_server = process.env.UI_SERVER;
+
+//    # SAME VALUES IN DEV & PRODUCTION
+const client_id = process.env.SPOTIFY_CLIENT_ID; // Your client id
+const client_secret = process.env.SPOTIFY_CLIENT_SECRET; // Your secret
 
 
 
