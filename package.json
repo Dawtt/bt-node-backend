@@ -33,7 +33,9 @@
     "dotenv-expand": "^4.2.0"
   },
   "scripts": {
-    "start": "node spotifyapp.js",
-    "nodemonserver": "nodemon spotifyapp.js"
+    "start": "node spotifyapp.js ",
+    "startdebugexpress": "DEBUG=http,express:* nodemon spotifyapp.js",
+    "nodemonserver": "nodemon spotifyapp.js",
+    "startcleanapp": "DEBUG=http,express:* nodemon cleanapp.js"
   }
 }
