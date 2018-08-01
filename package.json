@@ -1,7 +1,7 @@
 {
   "name": "bt-node-backend",
   "version": "0.0.4",
-  "main": "auth-server/authorization_code/spotifyapp.js",
+  "main": "cleanapp.js",
   "engines": {
     "node": "8.9.3",
     "npm": "6.1.0"
@@ -33,7 +33,7 @@
     "dotenv-expand": "^4.2.0"
   },
   "scripts": {
-    "start": "node spotifyapp.js ",
+    "start": "node cleanapp.js ",
     "startdebugexpress": "DEBUG=http,express:* nodemon spotifyapp.js",
     "nodemonserver": "nodemon spotifyapp.js",
     "startcleanapp": "DEBUG=http,express:* nodemon cleanapp.js"
